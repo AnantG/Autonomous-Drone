@@ -37,6 +37,10 @@ Bill of materials (about $800 total): [`hardware/BOM.md`](hardware/BOM.md).
 
 Validation and test sets are entire photo sessions the model never trained on, so near-identical shots can't leak between splits. All images are auto-oriented and fit to 640×640.
 
+![Image sources by split](media/charts/dataset_sources.png)
+
+![Part visibility by split](media/charts/dataset_class_balance.png)
+
 **Results on the test set (YOLO26n, 2.4M parameters):**
 
 | Class | Precision | Recall | mAP50 | mAP50-95 |
@@ -46,6 +50,10 @@ Validation and test sets are entire photo sessions the model never trained on, s
 | Fin can | 0.97 | 0.82 | 0.89 | 0.65 |
 | Nosecone | 0.96 | 0.81 | 0.87 | 0.71 |
 | Parachute | 0.98 | 0.96 | 0.97 | 0.90 |
+
+![Test-set precision, recall and box tightness](media/charts/test_metrics.png)
+
+The model rarely calls something a part when it isn't (precision about 0.97), but it misses roughly 1 in 5 tubes, fin cans and nosecones in any single image. Body-tube boxes are the loosest (mAP50-95 0.60), which matters most because that's what the claw grabs.
 
 **Files**
 - [`model/best.pt`](model/): trained weights (PyTorch)
