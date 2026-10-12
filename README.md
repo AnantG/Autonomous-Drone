@@ -29,6 +29,8 @@ It's also a way for us to test our engineering across hardware, embedded computi
 
 ## Hardware
 
+![Fusion render of the full drone assembly](media/cad_render.png)
+
 The full assembly is in [`cad/Total_Drone_Assembly_FinalVersion.f3z`](cad/) (Autodesk Fusion). Custom parts: center chassis plate, upper frame plate, arms, legs, frame spacers, and mounts for the camera, claw, GPS and receiver.
 
 Bill of materials (about $800 total): [`hardware/BOM.md`](hardware/BOM.md).
