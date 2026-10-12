@@ -41,6 +41,18 @@ Validation and test sets are entire photo sessions the model never trained on, s
 
 ![Part visibility by split](media/charts/dataset_class_balance.png)
 
+**Training:** YOLO26n at 640 px, batch 32, up to 80 epochs with early stopping (patience 20) on a Colab T4. Validation mAP stopped improving after epoch 48, so training ended at epoch 68 and `best.pt` is the epoch-48 checkpoint (validation mAP50 0.98, mAP50-95 0.79). Total time was about 2 hours.
+
+![Training and validation losses](media/charts/training_losses.png)
+
+![Validation mAP by epoch](media/charts/training_map.png)
+
+Validation loss sits below training loss because training images get mosaic and other augmentations while validation images don't. The validation L1 (box) loss levels off around epoch 40 while training loss keeps dropping, which is where early stopping earns its keep.
+
+![Confusion matrix on the validation set](media/charts/confusion_matrix.png)
+
+The one real mix-up is the nosecone: about 1 in 6 get called a body tube or fin can.
+
 **Results on the test set (YOLO26n, 2.4M parameters):**
 
 | Class | Precision | Recall | mAP50 | mAP50-95 |
@@ -53,7 +65,7 @@ Validation and test sets are entire photo sessions the model never trained on, s
 
 ![Test-set precision, recall and box tightness](media/charts/test_metrics.png)
 
-The model rarely calls something a part when it isn't (precision about 0.97), but it misses roughly 1 in 5 tubes, fin cans and nosecones in any single image. Body-tube boxes are the loosest (mAP50-95 0.60), which matters most because that's what the claw grabs.
+Test scores are lower than validation (0.90 vs 0.98 mAP50), so the test sessions are the harder set and the honest number. The model rarely calls something a part when it isn't (precision about 0.97), but it misses roughly 1 in 5 tubes, fin cans and nosecones in any single image. Body-tube boxes are the loosest (mAP50-95 0.60), which matters most because that's what the claw grabs.
 
 **Files**
 - [`model/best.pt`](model/): trained weights (PyTorch)
