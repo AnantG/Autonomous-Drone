@@ -4,6 +4,14 @@ A quadcopter that finds a landed, separated model rocket from the air and picks 
 
 ![Drone parts before final assembly](media/drone_parts_layout.jpg)
 
+## Why we built this
+
+After every launch, someone has to go find the rocket. Rockets drift under their parachutes and often come down far from the launch site, so recovery has meant walking long distances across whatever is out there: muddy ground, tall grass and thorny bushes. It's slow, and it eats into time that could go toward the next flight.
+
+This drone is meant to do that job autonomously. It flies out, spots the rocket's parts from the air and brings the body tube back, so nobody has to hike through the brush to get it.
+
+It's also a way for us to test our engineering across hardware, embedded computing and machine learning, and to build something that makes launch days easier for our school's aerospace club.
+
 ## Status
 
 | Part | Status |
